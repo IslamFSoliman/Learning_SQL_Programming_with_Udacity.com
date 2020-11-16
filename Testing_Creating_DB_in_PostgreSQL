@@ -1,0 +1,20 @@
+CREATE TABLE region(id int primary key, name varchar(100));
+
+CREATE TABLE sales_rep(id int primary key, name varchar(100), region_id int REFERENCES region(id));
+
+CREATE TABLE account(id int primary key, name varchar(100), website varchar(100),
+lat numeric, long numeric,
+primary_poc varchar(100),
+sales_rep_id int REFERENCES sales_rep(id));
+
+CREATE TABLE orders(id int primary key, account_id int REFERENCES account(id), occurred_at date,
+standard_qty numeric,
+gloss_qty numeric, poster_qty numeric,
+total numeric, standard_amt_usd numeric,
+gloss_amt_usd numeric,
+poster_amt_usd numeric, total_amt_usd numeric);
+
+CREATE TABLE web_events(id int primary key, account_id int REFERENCES account(id),
+occurred_at date, channel varchar(100));
+
+((Now we have created all DB tables and it's relations to each other))
